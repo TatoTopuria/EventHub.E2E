@@ -1,0 +1,26 @@
+# Normalize line endings: let git decide text vs binary, store LF in the repo.
+* text=auto
+
+# Source and config are text.
+*.cs       text diff=csharp
+*.csproj   text
+*.sln      text eol=crlf
+*.props    text
+*.targets  text
+*.json     text
+*.yml      text
+*.yaml     text
+*.md       text
+*.proto    text
+*.sh       text eol=lf
+
+# Contract snapshot goldens must stay LF so Windows dev and Linux CI agree byte-for-byte.
+*.verified.txt text eol=lf
+
+# Binaries.
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.dll binary
+*.snk binary

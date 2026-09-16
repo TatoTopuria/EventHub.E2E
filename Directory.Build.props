@@ -1,0 +1,19 @@
+<Project>
+
+  <!--
+    Shared MSBuild defaults for every project in the EventHub solution. The SDK imports this file
+    automatically before each .csproj, so a project can still override any value locally (e.g. the
+    contract snapshot tests set TreatWarningsAsErrors=false and RollForward=Major).
+
+    Package *versions* live in Directory.Packages.props (Central Package Management); this file is
+    only for shared build settings. Project-specific settings (IsPackable=false on test projects,
+    etc.) stay in their own .csproj.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+</Project>

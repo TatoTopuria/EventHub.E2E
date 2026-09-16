@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md']
+  pull_request:
+    paths-ignore: ['**.md']
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_VERSION: '8.0.x'
+  DOTNET_NOLOGO: '1'
+  DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Declared so the env-var nuget.config resolves; the E2E consumes no EventHub.* packages.
+      EVENTHUB_NUGET_FEED: ${{ vars.EVENTHUB_NUGET_FEED }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      - name: Build
+        run: dotnet build E2E.slnx --configuration Release
+
+  # The full Selenium run is intentionally NOT wired here yet — it needs the EventHub.Deploy compose,
+  # pre-built service images, and a ChromeDriver matching the runner's Chrome (the package is pinned
+  # to 131; bump it or use Selenium Manager first). Run it manually / nightly once those are in place:
+  #   EVENTHUB_COMPOSE_FILE=../EventHub.Deploy/deploy/docker/docker-compose.yml \
+  #     dotnet test tests/EventHub.E2E.SeleniumTests

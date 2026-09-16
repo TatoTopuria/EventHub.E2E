@@ -1,0 +1,68 @@
+# ───────────────────────── .NET build output ─────────────────────────
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+build/
+bld/
+msbuild.binlog
+*.binlog
+
+# Test output
+[Tt]est[Rr]esult*/
+TestResults/
+*.trx
+*.coverage
+*.coverage.xml
+coverage*.json
+coverage*.xml
+coverage*.info
+[Cc]overage/
+
+# ───────────────────────── IDE / editor ─────────────────────────
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+*~
+*.swp
+
+# ───────────────────────── NuGet ─────────────────────────
+*.nupkg
+*.snupkg
+.packages/
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+# ───────────────────────── Local / secrets ─────────────────────────
+# Keep checked-in appsettings*.json (dev placeholders), but never commit real local overrides:
+appsettings.*.local.json
+*.env
+.env
+.env.*
+!.env.example
+
+# ───────────────────────── Tooling artifacts ─────────────────────────
+# graphify knowledge-graph output (regenerated; large)
+graphify-out/
+
+# Local NuGet folder feed used to verify the package boundary before BaGetter is live (Phase 1b)
+.localfeed/
+
+# Claude Code: personal/local settings are per-developer; shared .claude/settings.json may be committed.
+.claude/settings.local.json
+
+# OS cruft
+.DS_Store
+Thumbs.db

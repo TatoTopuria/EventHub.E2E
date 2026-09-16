@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/EventHub.E2E.SeleniumTests/EventHub.E2E.SeleniumTests.csproj" />
+  </Folder>
+</Solution>
