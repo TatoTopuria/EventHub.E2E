@@ -23,7 +23,9 @@ jobs:
     timeout-minutes: 15
     env:
       # Declared so the env-var nuget.config resolves; the E2E consumes no EventHub.* packages.
-      EVENTHUB_NUGET_FEED: ${{ vars.EVENTHUB_NUGET_FEED }}
+      EVENTHUB_NUGET_FEED: ${{ vars.EVENTHUB_NUGET_FEED || 'https://nuget.pkg.github.com/tatotopuria/index.json' }}
+      EVENTHUB_NUGET_USER: ${{ github.actor }}
+      EVENTHUB_NUGET_TOKEN: ${{ secrets.EVENTHUB_NUGET_TOKEN || secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
